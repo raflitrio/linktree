@@ -5,6 +5,16 @@
   text-align: center;
 }
 
+/* Protect images from being downloaded */
+img {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+  -webkit-touch-callout: none;
+}
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;

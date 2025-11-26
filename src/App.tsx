@@ -1,9 +1,20 @@
 import { Code, Zap, ShoppingCart, Github, Linkedin, Instagram } from 'lucide-react';
+import { useEffect } from 'react';
 
 // Import gambar agar bundler (Vite/webpack) bisa resolve path-nya (opsional tapi disarankan)
 import photo from './assets/profile2.jpg'; // sesuaikan path relatif ke lokasi file tsx ini
 
 const App: React.FC = () => {
+  // Protect images from being downloaded
+  useEffect(() => {
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+      // Prevent right-click context menu
+      img.addEventListener('contextmenu', (e) => e.preventDefault());
+      // Prevent drag
+      img.addEventListener('dragstart', (e) => e.preventDefault());
+    });
+  }, []);
   const whatsappNumber = "6285728961516";
   const whatsappLinkBuat = `https://wa.me/${whatsappNumber}?text=Halo%20Rafli%2C%20saya%20mau%20buat%20web%2Fapp`;
   const whatsappLinkJoki = `https://wa.me/${whatsappNumber}?text=Halo%20Rafli%2C%20saya%20butuh%20joki%20web%2Fapp`;
@@ -44,6 +55,8 @@ const App: React.FC = () => {
             src={photo}
             alt="Rafli Triofansyah"
             className="w-full h-full object-cover"
+            draggable={false}
+            onContextMenu={(e) => e.preventDefault()}
           />
         </div>
 
